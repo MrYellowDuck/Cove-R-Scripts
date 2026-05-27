@@ -12,8 +12,6 @@ claim_job <- function(worker_id, Silent=FALSE, job=NA) {
   con <- DBI::dbConnect(RPostgres::Postgres(), host = postgres_host, port = 5432, dbname = "queue_db", user = "postgres", password = postgres_password)
   
   on.exit(DBI::dbDisconnect(con))
-
-  
   
   if(is.na(job)) {
     data <- DBI::dbGetQuery(con, "UPDATE jobs SET status = 'running', worker = $1, started_at = now(), attempts = attempts + 1  WHERE id = (SELECT id FROM jobs  WHERE status = 'queued' ORDER BY id FOR UPDATE SKIP LOCKED LIMIT 1) RETURNING id, payload, status, worker, started_at, attempts", params = list(worker_id))

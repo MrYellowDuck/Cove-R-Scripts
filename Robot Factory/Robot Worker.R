@@ -1,10 +1,12 @@
 #This is the scheduling loop run on each robot
 
-setwd("G:/.shortcut-targets-by-id/0B7LWykRP_SIGRUlaTTAtaFJRaEE/Cove/Actuarial/Competitor Quotes/Robot Factory")
+#setwd("G:/.shortcut-targets-by-id/0B7LWykRP_SIGRUlaTTAtaFJRaEE/Cove/Actuarial/Competitor Quotes/Robot Factory")
+
+setwd("G:/.shortcut-targets-by-id/0B7LWykRP_SIGRUlaTTAtaFJRaEE/Cove/Actuarial/R Code/Robot Factory")
 
 source("Robot Queue.r")
 
-job_name <- "Tower Auckland Premiums"
+job_name <- "Tower Motor 001 2026-05-27"
 
 while(TRUE) {
   data <- claim_job(Sys.info()[["nodename"]], job=job_name)
